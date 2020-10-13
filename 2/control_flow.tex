@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[cache=false]{minted}
+
+\title{Control Flow in Python}
+\author{Guillaume Macneil}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is the second lesson on the 'Introduction to Python' course. This course is loosely based around the 'MIT Introduction to Computer Science - Fall 2016' course. The course is more focused towards the Python programming side of things.
+\end{abstract}
+
+\section{Strings}
+
+To begin, let's start with another type of object - \textit{strings}. Strings are a combination of letters, special charaters, spaces, digits, etc all enclosed by either \textit{""} or \textit{''}.
+
+\begin{minted}{python}
+cat = "The cat "
+state = "sat on the mat."
+cat_state = cat + state
+print(cat_state)
+# Prints 'The cat sat on the mat.'
+
+laugh = "ha"
+laugh_5 = laugh * 5
+print(laugh_5)
+# Prints 'hahahahaha'
+\end{minted}
+
+As you can see, strings are interesting. As you can see in the 'cat\_state' example strings can be concatenated (joined together) by using the '+' operator. Certain operations can also be performed on strings, like using the '*' operator to duplicate strings. \medskip
+
+Another useful function is the \textit{input()} function that allows the user to \textit{input} data into a variable in your program. All the user has to do is type something and press enter.
+
+\newpage
+
+\begin{minted}{python}
+string_input = input("What string do you want to enter? ")
+type(string_input)
+# Returns 'str'
+print(string_input)
+# Prints whatever the user inputted
+
+integer_input = int(input("What integer do you want to enter? "))
+type(integer_input)
+# Returns 'int'
+print(integer_input)
+# Prints whatever the user inputted
+\end{minted}
+
+By default \textit{input()} returns a string. However, if you want to force the user to input an \textit{int} or \textit{float} you can type cast the input using \textit{int()} or \textit{float()} respectively. That said, if the user inputs a string when you cast to an integer, an error occur. \medskip
+
+\section{Comparison and Logic Operators}
+
+Comparison operators compare any two variables, lets say \textit{x} and \textit{y} and evaluate to a Boolean (either True or False). The common comparison operators are as follows:
+
+\begin{itemize}
+\item \textbf{x \textgreater y -} x is greater than y
+\item \textbf{x \textgreater= y -} x is greater than or equal to y
+\item \textbf{x \textless y -} x is less than y
+\item \textbf{x \textless= y -} x is less than or equal to y
+\item \textbf{x == y -} x is equal to y
+\item \textbf{x != y -} x is not equal to y
+\end{itemize}
+
+Logic operators compare two variables with Boolean values, lets sat \textit{a} and \textit{b} and evaluate to a Boolean. The logic operators are as follows:
+
+\begin{itemize}
+\item \textbf{not a -} returns the opposite Boolean value of \textit{a}
+\item \textbf{a and b -} returns \textit{True} if a and b are \textit{True}, \textit{False} otherwise
+\item \textbf{a or b -} returns \textit{True} if either of both \textit{a} and \textit{b} are \textit{True}, \textit{False} otherwise
+\end{itemize} \medskip
+
+\begin{center}
+\begin{tabular}{l|l|l|l}
+	A & B & A and B & A or B \\
+	\hline
+	True & True & True & True \\
+	True & False & False & True \\
+	False & True & False & True \\
+	False & False & False & False
+\end{tabular}
+\end{center}
+
+\begin{minted}{python}
+a = 4
+b = 7
+print(a >= 7)
+# Prints 'False'
+
+true_flag = True
+complicated = a == b and true_flag
+print(complicated)
+# Prints 'False'
+\end{minted}
+
+The first of the above examples is quite obvious, converted to english it says '4 is greater than or equal to 7' which is \textit{False}. The second is quite strange, converted to english it says '4 is equal to 7 and True'. This can be simplified further as '4 is equal to 7' is \textit{False}, so the evaluation becomes 'False and True' which as we know, is \textit{False}. \medskip
+
+\section{Control Flow}
+What is 'Control Flow' you might be asking? In essence it is a fancy way of saying \textit{if statements} and \textit{loops}. So, let's begin with the former.
+
+\subsection{If, Elif and Else}
+
+\begin{minted}{python}
+a = 9
+b = 3
+c = 15
+
+if a * b < c:
+    print("Statement A reached")
+elif a - b == c - a:
+    print("Statement B reached")
+else:
+    print("Statement C reached")
+\end{minted}
+
+This is arguably the most important example so far, as control flow is (in my opinion) one of the most fundamental elements of programming. In the above example, we have three variables \textit{a}, \textit{b} and \textit{c} with values 9, 3 and 15 respectively. Below that we have what I will call an \textit{'if, else block'} which performs comparisons on the variables and prints an output \textit{\textbf{if}} a condition is met. The statement becomes fairly easy to read when you realise that ':' means 'then' in english. \medskip
+
+In an \textit{'if, else block'} there are 3 main components - 'if', 'elif' and 'else'. 'If' will allow print statement A to be reached \textit{if} the condition evaluates to \textit{True}. 'Elif' will allow print statement B to be reached \textit{if} the prior condition was \textit{False} but the current condition is \textit{True}. 'Else' will allow print statement C to be reached \textit{if} all other conditions were \textit{False}. Based on this, I'll allow you to determine what each condition means in english - just know that the program prints "Statement B reached".\medskip
+
+Note also that all of the code that is dependent on an 'if', 'elif' or 'else' statement is \textit{indented} (pushed up a level). Indentation in Python \textbf{is not optional}, it is very important that you use it correctly.
+
+\subsection{Loops}
+A loop is a statement that repeats a block of code (also indented), provided that a given condition is met. In my opinion, they are as important as if statements (so pay attention). \medskip
+
+The first loop that we'll start with is the \textit{while loop}. As the name suggests, this loop repeats a block of code \textit{while} the given condition is true. Here's an example:
+
+\begin{minted}{python}
+count = 0
+while count <= 10:
+    print(f"Number: {count}")
+    count += 1
+# Prints "Number: 0", "Number: 1", ... , "Number: 9", "Number: 10"
+\end{minted}
+
+This example can be shortened down with the use of our second kind of loop, the \textit{for loop}. This loop performs a block of code \textit{for} each \textit{x} in \textit{y}. This may be confusing, but here's the simplified example:
+
+\begin{minted}{python}
+for number in range(0, 11):
+    print(f"Number: {number}")
+# Prints "Number: 0", "Number: 1", ... , "Number: 9", "Number: 10"
+\end{minted}
+
+The first thing of note in the above example is that the variable 'number' could be called anything - it's just a variable. The second thing of note is the \textit{range()} function, all this function does is \textit{iterate} over all of the integers from the \textbf{start} to the \textbf{stop} with a given \textbf{step} (automatically assumed to be 1). So, in the above example the 'number' variable repeatedly takes each integer from 0 to 11 not inclusive, then for each loop, the 'number' variable at that time is printed. \medskip
+
+If you want to \textit{break} out of a loop if a given condition is met, you can use the \textit{break} statement. The \textit{break} statement \textbf{leaves the innermost loop only}.
+
+\begin{minted}{python}
+for i in range(0, 10):
+    print(f"Number: {f}")
+    if i == 7:
+	break
+# Prints "Number: 0", "Number: 1", ... , "Number: 6", "Number: 7"
+\end{minted}
+
+Though the above example isn't very practical (why not just bound it between 0 and 7?), but I feel that it illustrates the \textit{break} function quite well. The loop stops when 'i is equal to 7'. \medskip
+
+\begin{center}
+\begin{tabular}{l|c|c}
+	Loop type: & \textbf{for} & \textbf{while} \\
+	\hline
+	End early: & can use break statement & can use break statement \\
+	Number of iterations: & bounded & unbounded \\
+	Counter: & inbuilt & initialized prior
+\end{tabular}
+\end{center}
+\end{document}

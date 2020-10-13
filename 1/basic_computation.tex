@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[cache=false]{minted}
+
+\title{Basic Computation in Python}
+\author{Guillaume Macneil}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is the first lesson on the 'Introduction to Python' course. This course is loosely based around the 'MIT Introduction to Computer Science - Fall 2016' course. The course is more focused towards the Python programming side of things.
+\end{abstract}
+
+\section{An Overview}
+Programming is just the creation of instruction sets for a computer in order to achieve a desired output. Fundamentally, all the computer does is perform basic calculations - \textbf{billions per second} - and stores the result. All of these calculations are defined by you as the programmer and the computer will only do what you tell it to. \medskip
+
+So let's start with some of the very basics of Python, though this is applicable to almost every programming language. A program is a series of definitions that are evaluated and commands that are executed. So what executes the commands? The commands are executed by the \textit{'interpreter'} - a program that \textit{interprets} the high-level commands that you gave and makes the computer perform them. Programs can be thought of as cooking recipies, where the computer is the chef that diligently follows the instructions \textbf{very accurately}. \medskip
+
+\section{Objects and Types}
+Programs manipulate and perform calculations of data objects. All objects have a type that defines what calculations the computer can do to them. Here are the fundamental scalar (cannot be subdivided) objects.
+\begin{itemize}
+\item \textbf{\textit{int} -} integers, eg. \textit{6}
+\item \textbf{\textit{float} -} floating point (decimal) numbers (real), eg. \textit{3.97}
+\item \textbf{\textit{bool} -} boolean values, either \textit{True} or \textit{False}
+\item \textbf{\textit{NoneType} -} an object that only has the value \textit{None}
+\end{itemize}
+
+You can use the \textit{type()} function (you'll find out about these later) to determine the type of a given object. For example:
+
+\begin{minted}{python}
+type(3)
+# Returns 'int'
+
+type(7.0)
+# Returns 'float'
+
+type(True)
+# Returns bool
+\end{minted}
+
+As a quick note, the above lines that start with \textit{\#} are called comments, the interpreter ignores these, they are just notes for programmers reading the code. \medskip
+
+Certain objects can have their types converted into other types (also called 'type casting'). These type conversions can be performed with functions like \textit{float()} and \textit{int()} which convert certain objects into \textit{float} and \textit{int} types respectively:
+
+\begin{minted}{python}
+float(5)
+# Converts the int 3 into the float 5.0
+
+int(2.6)
+# Truncates the float 2.6 into the int 3
+\end{minted}
+
+One of the most useful commands that you can use is the \textit{print()} function that \textit{prints} the given object for the user to see:
+
+\begin{minted}{python}
+print(7)
+# Prints 7
+
+print(2+5)
+# Prints 7
+\end{minted}
+
+\section{Operators and variables}
+Operators are in Python are the mostly the same as those that we use in every day life, like \textbf{\textit{+}} and \textbf{\textit{-}}. Here's a list of the ones that can be performed on \textit{ints} and \textit{floats}: \medskip
+
+\begin{itemize}
+\item \textbf{x + y -}  x plus y
+\item \textbf{x - y -}  x minus y
+\item \textbf{x * y -}  x times y
+\item \textbf{x / y -}  x divided by y
+\item \textbf{x \% y -}  the remainder of x divided by y
+\item \textbf{x ** y -}  x to the power of y
+\end{itemize}
+
+Just like in normal mathematics, parentheses can be used to tell Python which operations to do first. Python follows the 'BODMAS' (or equivalent) order of operations - \textbf{B}rackets, \textbf{O}rders, \textbf{D}ivision, \textbf{M}ultiplication, \textbf{A}ddition and \textbf{S}ubtraction. \medskip
+
+This is all well and good, but what happens if we want to store some information? This is where variables come in. Variables are, in essence, boxes in which we can store objects. Variables can be assigned values using the \textit{=} sign. For example:
+
+\begin{minted}{python}
+pi = 3.14159
+type(pi)
+# Returns 'float'
+
+year = 2020
+type(year)
+# Returns 'int'
+\end{minted}
+
+Variables store values in the computer's memory. The above assignments bind a value to a given name, this allows the values to be invoked by using the variable name. We use variables in order to reuse names instead of values, this makes it easier to work with the program.
+
+\begin{minted}{python}
+a = 56
+b = 32
+a = a + b
+# An equivalent statement would be 'a += b'
+
+print(a)
+# Prints '88'
+\end{minted}
+
+As shown above, variables can be re-bound, meaning that names can be assigned to new values. The previous value may still be stored in memory, but the variable no longer \textit{points} to it.
+\end{document}

@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[cache=false]{minted}
+\usepackage{makecell}
+
+\title{Data Structures in Python}
+\author{Guillaume Macneil}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is the fourth lesson on the 'Introduction to Python' course. This course is loosely based around the 'MIT Introduction to Computer Science - Fall 2016' course. The course is more focused towards the Python programming side of things.
+\end{abstract}
+
+\section{Introduction to Data Structures}
+In prior lessons, we have shown how variables can be very useful as they can: \textbf{1.} store values \textbf{2.} have values re-assigned to them multiple times \textbf{3.} act as a further layer of abstraction above just operating with the plain values. We quickly run into an issue though, what if I want to store \textit{multiple values} under one name? To do this, we'll need to use some other Python data structures.
+
+\subsection{Tuples}
+Tuples are an ordered sequence of elements, each of which can have a different type. Each element is \textit{immutable} - the value of each element cannot be edited after assignment.
+
+\begin{minted}{python}
+assortment = (623, "Hello", 42.1, True)
+
+print(assortment[0])
+# Prints 623
+print(assortment[1:3])
+# Prints ("Hello", 42.1)
+
+len(assortment)
+# Returns 4
+
+assortment = assortment + (False, "Another")
+# The "+=" operator could (and should) be used here
+print(assortment)
+# Prints (623, "Hello", 42.1, True, False, "Another")
+\end{minted}
+
+This may at first seem pretty confusing (that's normal) but the code is actually relatively simple. First, we began with creating a tuple called \textit{"assortment"} and assigned it 4 values. After that, we used a method of accessing the elements of the tuple called \textit{indexing} - we specify the name of the data structure we want to index and then enclosed the index we wanted to access in square brackets, like this \textit{a[3]}. Thirdly, we used another method of accessing elements in the tuple called \textit{slicing}. This is done in a similar way to indexing, only instead of specifying a single index within the square brackets, we specify a range like this \textit{a[2:5]}. After that, we used the \textit{len()} function to return the length of the tuple and concatenated two tuples together, making one large tuple. It is important to note that these operations are not unique tuples, they can be used on many data structures.
+
+\subsection{Lists}
+Much like tuples, lists are ordered sequences of elements accessible by index. The elements in a list are usually homogeneous (of the same type), though they do not have to be. Unlike tuples, the elements of a list are mutable.
+
+\begin{minted}{python}
+a = [23, 54, 76, 12, 5, 7, 23, 342]
+b = [True, False, "Yes", 0, ["A", ["B", 56.7]]]
+
+len(a)
+# Returns 8
+len(b)
+# Returns 5
+
+print(a[3])
+# Prints 12
+print(b[3:])
+# This '[3:]' notation says 'slice from the fourth element onward'
+# Prints [0, ["A", ["B", 56.7]]]
+
+a[0] = "An obvious change"
+print(a)
+# Prints ["An obvious change", 54, 76, 12, 5, 7, 23, 342]
+\end{minted}
+
+As you can see, lists look quite similar to tuples, with only a few minor differences. Lists are bound by square brackets and, as you can see, can contain any combination of objects. They can be indexed to access individual elements and can be sliced just like tuples. However, there are a few differences. Elements can be reassigned just like a normal variable, by specifying the desired index and using the \textit{'='} operator. Another interesting thing is that you can nest lists (you can actually do the same with tuples too) - you can have a list within a list, or in list \textit{'b'}, a list within a list within a list.
+
+\subsection{Dictionaries}
+Dictionaries are slightly different to the other data structures in the sense that instead of just holding a sequence of elements, dictionaries hold a series of key-value pairs. This means you can query a key and access a value.
+
+\begin{minted}{python}
+fruit_stock = {"apples": 43, "bananas": 76, "oranges": 90}
+
+print(fruit_stock["apples"])
+# Prints 43
+print(fruit_stock["oranges"])
+# Prints 90
+
+print("apples" in fruit_stock)
+# Prints True
+print("cherries" in fruit_stock)
+# Prints False
+
+fruit_stock["apples"] = 42
+print(fruit_stock["apples"])
+# Prints 42
+\end{minted}
+
+Now this does, at first glance, look quite different. The dictionary is bound by curly brackets, instead of there being one object per element, there's two separated by a colon! This is an important feature of dictionaries, the object to the left of the colon is called the \textit{key} and the object to the right is called the \textit{value}. These function in much the same way as actual, physical dictionaries. You search for a word in a certain language, you find it and then get the equivalent word in the other language. In Python dictionaries, you index the dictionary with the key (\textit{ a["key"] }) and it returns the value associated with that key. Another thing to note is that dictionaries are also mutable, so you can re-associate a given key with a new value.
+
+\section{Data Structure Methods}
+The fun with data structures doesn't stop there though! Let's suppose that we wanted to add a new element to a list, would we have to completely re-define the list with a new element on the end? That seems like a pretty inefficient, no? Luckily, there is a solution to this - methods. \medskip
+
+\subsection{Tuple Methods}
+Tuples only have two methods because they are fundamentally simple data structures that, honestly, can't do very much due to their immutability. \medskip
+\newpage
+
+\begin{center}
+\begin{tabular}{l|l|l|l}
+     Method: & Parameters: & Example: & Purpose:\\
+     \hline
+     \textbf{a.count()} & \makecell{element} & \makecell{a.count("apple")} & \makecell{Counts the number of \\instances of a given \\element in a tuple} \\
+     \hline
+     \textbf{a.index()} & \makecell{element\\(start)\\(end)} & \makecell{a.index("apple")} & \makecell{Returns the index\\ of a given element\\ in a tuple}
+\end{tabular}
+\end{center}
+
+\subsection{List Methods}
+Lists, unlike tuples, have many methods (as you can see). In many respects, most of the functionality of lists is due to the methods that can be performed on them. \medskip
+
+\begin{center}
+\begin{tabular}{l|l|l|l}
+     Method: & Parameters: & Example: & Purpose:\\
+     \hline
+     \textbf{a.append()} & \makecell{item} & \makecell{a.append("apple")} & \makecell{Adds a given item to\\the end of the list} \\
+     \hline
+     \textbf{a.clear()} &  & \makecell{a.clear()} & \makecell{Empties a given list} \\
+     \hline
+     \textbf{a.copy()} &  & \makecell{a.copy()} & \makecell{Duplicates a given list} \\
+     \hline
+     \textbf{a.count()} & \makecell{element} & \makecell{a.count("apple")} & \makecell{Counts the number of\\instances of an element\\ in a given list} \\
+     \hline
+     \textbf{a.extend()} & \makecell{iterable} & \makecell{a.extend(b)} & \makecell{Adds the elements\\of an iterable to the\\end of the list} \\
+     \hline
+     \textbf{a.index()} & \makecell{element\\(start)\\(end)} & \makecell{a.index("apple")} & \makecell{Returns the index of\\a given element in\\a list} \\
+     \hline
+     \textbf{a.insert()} & \makecell{index\\element} & \makecell{a.insert(2, "apple")} & \makecell{Inserts an element to\\the list at a specified\\ index} \\
+     \hline
+     \textbf{a.pop()} & \makecell{index} & \makecell{a.pop(3)} & \makecell{Removes and returns\\an element from a\\list at a given index} \\
+     \hline
+     \textbf{a.remove()} & \makecell{element} & \makecell{a.remove("apple")} & \makecell{Removes the first\\matching element\\from a list } \\
+     \hline
+     \textbf{a.reverse()} & & \makecell{a.reverse()} & \makecell{Reverses the elements\\of a list} \\
+     \hline
+     \textbf{a.sort()} & \makecell{(reverse)\\(key)} & \makecell{a.sort()} & \makecell{Sorts the elements of a\\list in ascending or\\descending order} \\
+\end{tabular}
+\end{center}
+
+\subsection{Dictionary Methods}
+Dictionaries, much like lists, also have many methods which allow for the manipulation and collection of data from the dictionary. \medskip
+
+\begin{center}
+\begin{tabular}{l|l|l|l}
+    Method: & Parameters: & Example: & Purpose: \\
+    \hline
+    \textbf{a.clear()} &  & \makecell{a.clear()} & \makecell{Removes all items from\\the dictionary} \\
+    \hline
+    \textbf{a.copy()} &  & \makecell{a.copy()} & \makecell{Makes a shallow copy\\of the dictionary} \\
+    \hline
+    \textbf{a.fromkeys()} & \makecell{sequence\\(value)} & \makecell{a.fromkeys(k)} & \makecell{Creates a new dictionary\\from the given sequence\\of elements} \\
+    \hline
+    \textbf{a.get()} & \makecell{key\\(value)} & \makecell{a.get("apple")} & \makecell{Returns the value for\\the specified key} \\
+    \hline
+    \textbf{a.items()} &  & \makecell{a.items()} & \makecell{Displays a list of a\\dictionary's key-value\\tuple pairs} \\
+    \hline
+    \textbf{a.keys()} &  & \makecell{a.keys()} & \makecell{Displays a list of a\\dictionary's keys} \\
+    \hline
+    \textbf{a.pop()} & \makecell{key\\(default)} & \makecell{a.pop("apple")} & \makecell{Removes and returns a\\given element from a\\dictionary} \\
+    \hline
+    \textbf{a.popitem()} &  & \makecell{a.popitem()} & \makecell{Removes and returns\\the key-value pair in\\LIFO order} \\
+    \hline
+    \textbf{a.setdefault()} & \makecell{key\\(default)} & \makecell{a.setdefault(\\"apple")} & \makecell{Returns the value of\\a key if present,\\inserts a key-value\\pair otherwise} \\
+    \hline
+    \textbf{a.update()} & \makecell{dictionary} & \makecell{a.update(b)} & \makecell{Updates the dictionary\\from with elements\\from another dictionary} \\
+    \hline
+    \textbf{a.values()} &  & \makecell{a.values()} & \makecell{Displays a list of a\\dictionary's values} \\
+\end{tabular}
+\end{center}
+\end{document}
